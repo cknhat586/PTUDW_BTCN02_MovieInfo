@@ -1,23 +1,27 @@
 export default {
     data() {
-        return {
-
-        }
+        return {}
     },
     mounted() {
 
     },
     methods: {
         searchMovie() {
-
+            const searchKey = document.getElementById('searchInput').value.toString()
+            if (searchKey != '') {
+                this.$emit('activeSearchResult', searchKey)
+            }
+        },
+        backHome() {
+            this.$emit('activeHome')
         }
     },
     template: `
     <div id="navbar">
-        <div id="nav-title">Home</div>
+        <div @click="backHome" id="nav-title">Home</div>
         <form id="searchForm">
-            <input @search="searchMovie" id="searchInput" class="form-control" type="search" placeholder="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input id="searchInput" class="form-control" type="search" placeholder="Search...">
+            <button @click="searchMovie" class="btn btn-outline-success" type="button">Search</button>
         </form>
     </div>
     `
